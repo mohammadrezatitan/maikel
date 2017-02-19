@@ -24,7 +24,7 @@ chmod +x maikel.sh
 ```
 ### or install bot(2)
 ```sh
-cd $HOME && git clone https://github.com/mohammadrezatitan/maikel.git && cd parsol && chmod +x maikel.sh && ./maikel.sh install && ./maikel.sh
+cd $HOME && git clone https://github.com/mohammadrezatitan/maikel.git && cd maikel && chmod +x maikel.sh && ./maikel.sh install && ./maikel.sh
 ```
 
 * * *
