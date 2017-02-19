@@ -1,7 +1,7 @@
 tdcli = dofile('./tg/tdcli.lua')
 serpent = (loadfile "./libs/serpent.lua")()
 feedparser = (loadfile "./libs/feedparser.lua")()
-our_id = 265541133 -- Put Here Your Bot ID
+our_id = 267785153 -- Put Here Your Bot ID
 --ایدی رباتتونو اینجا بزارید
 URL = require "socket.url"
 http = require "socket.http"
@@ -82,38 +82,42 @@ function create_config( )
     "groupmanager",
     "msg-checks",
     "plugins",
-    "tools"
+    "tools",
+    "chat",
+    "write",
+    "azan",
+    "time",
+    "time1",
+    "suplink",
+    "mypic",
+    "expire",
+    "del",
+    "kickme",
+    "me",
+    "info",
+    "ping",
+    "setnerkh"
+			
  },
-    sudo_users = {157059515},
+    sudo_users = {267785153},
     admins = {},
     disabled_channels = {},
     moderation = {data = './data/moderation.json'},
-    info_text = [[》Beyond Reborn v1
-An advanced administration bot based on https://valtman.name/telegram-cli
+    info_text = [[》titantim
 
-》https://github.com/BeyondTeam/BDReborn 
+》https://github.com/mohammadrezatitan/maikel
 
 》Admins :
-》@SoLiD ➣ Founder & Developer《
-》@Makan ➣ Developer《
-》@Rixel ➣ Developer 《
-》@Exacute ➣ Developer《
-》@CiveY ➣ Developer
-》@ArmanDev ➣ Manager《
-》@MrPars ➣ Manager《
+》@mohammadrezajiji
+》@sina_sp
 
 》Special thanks to :
-》@Vysheng
-》@MrHalix
-》@K_a_I_i_I_i_n_u_x
-》@Nero_Dev
-》And Beyond Team Members
+》luaerror
+》
 
 》Our channel :
-》@BeyondTeam《
+》@titantims
 
-》Our website :
-》http://BeyondTeam.ir
 ]],
   }
   serialize_to_file(config, './data/config.lua')
@@ -901,3 +905,4 @@ elseif msg.content_.ID == "MessageGame" then
   end
 
 end
+--@mohammadrezajiji
