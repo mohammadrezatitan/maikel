@@ -19,7 +19,8 @@ git clone https://github.com/mohammadrezatitan/maikel.git
 cd maikel
 chmod +x maikel.sh
 ./maikel.sh install
-./maikel.sh # Enter a phone number & confirmation code.
+./maikel.sh 
+# Enter a phone number & confirmation code.
 ```
 ### or install bot(2)
 ```sh
