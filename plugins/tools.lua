@@ -1,9 +1,9 @@
 --Begin Tools.lua :)
-local SUDO = 267785153 -- put Your ID here! <===
+local SUDO = 157059515 -- put Your ID here! <===
 local function index_function(user_id)
   for k,v in pairs(_config.admins) do
     if user_id == v[1] then
-      print(k)
+    	print(k)
       return k
     end
   end
@@ -59,51 +59,51 @@ local sudo_users = _config.sudo_users
    else
  text = "_لیست ادمین های ربات :_\n"
   end
-        local compare = text
-        local i = 1
-        for v,user in pairs(_config.admins) do
-          text = text..i..'- '..(user[2] or '')..' ➣ ('..user[1]..')\n'
-        i = i +1
-        end
-        if compare == text then
+		  	local compare = text
+		  	local i = 1
+		  	for v,user in pairs(_config.admins) do
+			    text = text..i..'- '..(user[2] or '')..' ➣ ('..user[1]..')\n'
+		  	i = i +1
+		  	end
+		  	if compare == text then
    if not lang then
-          text = '_No_ *admins* _available_'
+		  		text = '_No_ *admins* _available_'
       else
-          text = '_ادمینی برای ربات تعیین نشده_'
+		  		text = '_ادمینی برای ربات تعیین نشده_'
            end
-        end
-        return text
+		  	end
+		  	return text
     end
 
 local function chat_list(msg)
-  i = 1
-  local data = load_data(_config.moderation.data)
+	i = 1
+	local data = load_data(_config.moderation.data)
     local groups = 'groups'
     if not data[tostring(groups)] then
         return 'No groups at the moment'
     end
     local message = 'List of Groups:\n*Use #join (ID) to join*\n\n'
     for k,v in pairsByKeys(data[tostring(groups)]) do
-    local group_id = v
-    if data[tostring(group_id)] then
-      settings = data[tostring(group_id)]['settings']
-    end
+		local group_id = v
+		if data[tostring(group_id)] then
+			settings = data[tostring(group_id)]['settings']
+		end
         for m,n in pairsByKeys(settings) do
-      if m == 'set_name' then
-        name = n:gsub("", "")
-        chat_name = name:gsub("‮", "")
-        group_name_id = name .. '\n(ID: ' ..group_id.. ')\n\n'
-        if name:match("[\216-\219][\128-\191]") then
-          group_info = i..' - \n'..group_name_id
-        else
-          group_info = i..' - '..group_name_id
+			if m == 'set_name' then
+				name = n:gsub("", "")
+				chat_name = name:gsub("‮", "")
+				group_name_id = name .. '\n(ID: ' ..group_id.. ')\n\n'
+				if name:match("[\216-\219][\128-\191]") then
+					group_info = i..' - \n'..group_name_id
+				else
+					group_info = i..' - '..group_name_id
+				end
+				i = i + 1
+			end
         end
-        i = i + 1
-      end
-        end
-    message = message..group_info
+		message = message..group_info
     end
-  return message
+	return message
 end
 
 local function action_by_reply(arg, data)
@@ -126,8 +126,8 @@ if is_admin1(tonumber(data.id_)) then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* _از قبل ادمین ربات بود_", 0, "md")
       end
    end
-      table.insert(_config.admins, {tonumber(data.id_), user_name})
-    save_config()
+	    table.insert(_config.admins, {tonumber(data.id_), user_name})
+		save_config()
      if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _has been promoted as_ *admin*", 0, "md")
     else
@@ -143,7 +143,7 @@ tdcli_function ({
 local function admindem_cb(arg, data)
 local hash = "gp_lang:"..arg.chat_id
 local lang = redis:get(hash)
-  local nameid = index_function(tonumber(data.id_))
+	local nameid = index_function(tonumber(data.id_))
 if data.username_ then
 user_name = '@'..check_markdown(data.username_)
 else
@@ -156,8 +156,8 @@ if not is_admin1(data.id_) then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* _از قبل ادمین ربات نبود_", 0, "md")
       end
    end
-    table.remove(_config.admins, nameid)
-    save_config()
+		table.remove(_config.admins, nameid)
+		save_config()
     if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _has been demoted from_ *admin*", 0, "md")
    else
@@ -186,7 +186,7 @@ if already_sudo(tonumber(data.id_)) then
       end
    end
           table.insert(_config.sudo_users, tonumber(data.id_))
-    save_config()
+		save_config()
      reload_plugins(true)
   if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is now_ *sudoer*", 0, "md")
@@ -216,7 +216,7 @@ end
       end
    end
           table.remove(_config.sudo_users, getindex( _config.sudo_users, tonumber(data.id_)))
-    save_config()
+		save_config()
      reload_plugins(true) 
    if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is no longer a_ *sudoer*", 0, "md")
@@ -257,8 +257,8 @@ if is_admin1(tonumber(data.id_)) then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* _از قبل ادمین ربات بود_", 0, "md")
       end
    end
-      table.insert(_config.admins, {tonumber(data.id_), user_name})
-    save_config()
+	    table.insert(_config.admins, {tonumber(data.id_), user_name})
+		save_config()
      if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _has been promoted as_ *admin*", 0, "md")
     else
@@ -266,7 +266,7 @@ if is_admin1(tonumber(data.id_)) then
    end
 end
     if cmd == "admindem" then
-  local nameid = index_function(tonumber(data.id_))
+	local nameid = index_function(tonumber(data.id_))
 if not is_admin1(data.id_) then
    if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is not a_ *admin*", 0, "md")
@@ -274,8 +274,8 @@ if not is_admin1(data.id_) then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* _از قبل ادمین ربات نبود_", 0, "md")
       end
    end
-    table.remove(_config.admins, nameid)
-    save_config()
+		table.remove(_config.admins, nameid)
+		save_config()
     if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _has been demoted from_ *admin*", 0, "md")
    else
@@ -291,7 +291,7 @@ if already_sudo(tonumber(data.id_)) then
       end
    end
           table.insert(_config.sudo_users, tonumber(data.id_))
-    save_config()
+		save_config()
      reload_plugins(true)
   if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is now_ *sudoer*", 0, "md")
@@ -308,7 +308,7 @@ end
       end
    end
           table.remove(_config.sudo_users, getindex( _config.sudo_users, tonumber(data.id_)))
-    save_config()
+		save_config()
      reload_plugins(true) 
    if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is no longer a_ *sudoer*", 0, "md")
@@ -344,8 +344,8 @@ if is_admin1(tonumber(data.id_)) then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* _از قبل ادمین ربات بود_", 0, "md")
       end
    end
-      table.insert(_config.admins, {tonumber(data.id_), user_name})
-    save_config()
+	    table.insert(_config.admins, {tonumber(data.id_), user_name})
+		save_config()
      if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _has been promoted as_ *admin*", 0, "md")
     else
@@ -353,7 +353,7 @@ if is_admin1(tonumber(data.id_)) then
    end
 end 
     if cmd == "admindem" then
-  local nameid = index_function(tonumber(data.id_))
+	local nameid = index_function(tonumber(data.id_))
 if not is_admin1(data.id_) then
    if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is not a_ *admin*", 0, "md")
@@ -361,8 +361,8 @@ if not is_admin1(data.id_) then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* _از قبل ادمین ربات نبود_", 0, "md")
       end
    end
-    table.remove(_config.admins, nameid)
-    save_config()
+		table.remove(_config.admins, nameid)
+		save_config()
     if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _has been demoted from_ *admin*", 0, "md")
    else
@@ -378,7 +378,7 @@ if already_sudo(tonumber(data.id_)) then
       end
    end
           table.insert(_config.sudo_users, tonumber(data.id_))
-    save_config()
+		save_config()
      reload_plugins(true)
   if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is now_ *sudoer*", 0, "md")
@@ -395,7 +395,7 @@ end
       end
    end
           table.remove(_config.sudo_users, getindex( _config.sudo_users, tonumber(data.id_)))
-    save_config()
+		save_config()
      reload_plugins(true) 
    if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is no longer a_ *sudoer*", 0, "md")
@@ -587,15 +587,15 @@ return '_تیک دوم >_ *خاموش*'
    end
 end
 
-if matches[1] == 'bc' and is_admin(msg) then    
-tdcli.sendMessage(matches[2], 0, 0, matches[3], 0)  end 
+if matches[1] == 'bc' and is_admin(msg) then		
+tdcli.sendMessage(matches[2], 0, 0, matches[3], 0)	end	
 
-if matches[1] == 'broadcast' and is_sudo(msg) then    
-local data = load_data(_config.moderation.data)   
-local bc = matches[2]     
-for k,v in pairs(data) do       
-tdcli.sendMessage(k, 0, 0, bc, 0)     
-end 
+if matches[1] == 'broadcast' and is_sudo(msg) then		
+local data = load_data(_config.moderation.data)		
+local bc = matches[2]			
+for k,v in pairs(data) do				
+tdcli.sendMessage(k, 0, 0, bc, 0)			
+end	
 end
 
 if matches[1] == 'sudolist' and is_sudo(msg) then
@@ -605,32 +605,32 @@ if matches[1] == 'chats' and is_admin(msg) then
 return chat_list(msg)
     end
    if matches[1]:lower() == 'join' and is_admin(msg) and matches[2] then
-     tdcli.sendMessage(msg.to.id, msg.id, 1, 'I Invite you in '..matches[2]..'', 1, 'html')
-     tdcli.sendMessage(matches[2], 0, 1, "Admin Joined!🌚", 1, 'html')
+	   tdcli.sendMessage(msg.to.id, msg.id, 1, 'I Invite you in '..matches[2]..'', 1, 'html')
+	   tdcli.sendMessage(matches[2], 0, 1, "Admin Joined!🌚", 1, 'html')
     tdcli.addChatMember(matches[2], msg.from.id, 0, dl_cb, nil)
   end
-    if matches[1] == 'rem' and matches[2] and is_admin(msg) then
+		if matches[1] == 'rem' and matches[2] and is_admin(msg) then
     local data = load_data(_config.moderation.data)
-      -- Group configuration removal
-      data[tostring(matches[2])] = nil
-      save_data(_config.moderation.data, data)
-      local groups = 'groups'
-      if not data[tostring(groups)] then
-        data[tostring(groups)] = nil
-        save_data(_config.moderation.data, data)
-      end
-      data[tostring(groups)][tostring(matches[2])] = nil
-      save_data(_config.moderation.data, data)
-     tdcli.sendMessage(matches[2], 0, 1, "Group has been removed by admin command", 1, 'html')
+			-- Group configuration removal
+			data[tostring(matches[2])] = nil
+			save_data(_config.moderation.data, data)
+			local groups = 'groups'
+			if not data[tostring(groups)] then
+				data[tostring(groups)] = nil
+				save_data(_config.moderation.data, data)
+			end
+			data[tostring(groups)][tostring(matches[2])] = nil
+			save_data(_config.moderation.data, data)
+	   tdcli.sendMessage(matches[2], 0, 1, "Group has been removed by admin command", 1, 'html')
     return '_Group_ *'..matches[2]..'* _removed_'
-    end
+		end
 if matches[1] == 'beyond' then
 return tdcli.sendMessage(msg.to.id, msg.id, 1, _config.info_text, 1, 'html')
     end
 if matches[1] == 'adminlist' and is_admin(msg) then
 return adminlist(msg)
     end
-     if matches[1] == 'leave' and is_admin(msg) or matches[1] == 'ترک' and is_admin(msg) then
+     if matches[1] == 'leave' and is_admin(msg) then
   tdcli.changeChatMemberStatus(msg.to.id, our_id, 'Left', dl_cb, nil)
    end
      if matches[1] == 'autoleave' and is_admin(msg) then
@@ -666,9 +666,8 @@ patterns = {
 "^[!/#](adminprom) (.*)$", 
 "^[!/#](admindem) (.*)$",
 "^[!/#](leave)$",
-"^(ترک)$",
 "^[!/#](autoleave) (.*)$", 
-"^[!/#](beyondimmm)$",
+"^[!/#](beyond)$",
 "^[!/#](creategroup) (.*)$",
 "^[!/#](createsuper) (.*)$",
 "^[!/#](tosuper)$",
